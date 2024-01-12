@@ -14,11 +14,19 @@ public class Camion extends Vehiculo{
     @Override
     public void avanzar() {
         posX += 2;
+        if(posX>9){
+            posX = 9;
+        }
     }
 
     @Override
     public void retroceder() {
-        posX -= 2;
+        if(posX - 2 < 0){
+            posX =0;
+        }
+        else{
+            posX -= 2;
+        }
     }
     
     @Override

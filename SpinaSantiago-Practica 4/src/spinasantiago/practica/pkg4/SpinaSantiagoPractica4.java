@@ -86,58 +86,34 @@ public class SpinaSantiagoPractica4 {
                 switch (eleccion) {
                     case 1:
                         if(mazo[cartaRandom].getEstado() %2==0){
-                            if(camion.getPosX() < 9){
-                                tablero[0][camion.getPosX()] = null;
+                            tablero[0][camion.getPosX()] = null;
                                 camion.avanzar();
-                            }
-                            else{
-                                tablero[0][camion.getPosX()] = null;
-                                camion.setPosX(9);
-                            }
                         }
                         else{
-                            if(camion.getPosX() >= 2){
                                 tablero[0][camion.getPosX()] = null;
                                 camion.retroceder();
-                            }
                         }
                         actualizarTablero(tablero, camion);
                         break;
                     case 2:
                         if(mazo[cartaRandom].getEstado() %2==0){
-                            if(moto.getPosX() < 6){
-                                tablero[1][moto.getPosX()] = null;
+                            tablero[1][moto.getPosX()] = null;
                                 moto.avanzar();
-                            }
-                            else{
-                                tablero[1][moto.getPosX()] = null;
-                                moto.setPosX(9);
-                            }
                         }
                         else{
-                            if(moto.getPosX() >= 4){
                                 tablero[1][moto.getPosX()] = null;
                                 moto.retroceder();
-                            }
                         }
                         actualizarTablero(tablero, moto);
                         break;
                     case 3:
                         if(mazo[cartaRandom].getEstado() %2==0){
-                            if(coche.getPosX() < 7){
-                                tablero[2][coche.getPosX()] = null;
+                            tablero[2][coche.getPosX()] = null;
                                 coche.avanzar();
-                            }
-                            else{
-                                tablero[2][coche.getPosX()] = null;
-                                coche.setPosX(9);
-                            }
                         }
                         else{
-                            if(coche.getPosX() >= 3){
                                 tablero[2][coche.getPosX()] = null;
                                 coche.retroceder();
-                            }
                         }
                         actualizarTablero(tablero, coche);
                         
