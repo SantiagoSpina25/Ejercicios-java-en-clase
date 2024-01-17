@@ -140,5 +140,26 @@ public class EjercicioPracticaDel170124 {
     }
 
     
+    private static boolean comprobarGanador(char tablero [] []){
+        boolean negrasVivos = false, blancasVivos= false;
+        boolean algunoVivo = false;
+        //Comprobar negras
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero[i].length; j++) {
+                if(tablero[i][j] == 'N'){
+                    negrasVivos = true;
+                }
+                else if(tablero[i][j] == 'B'){
+                    blancasVivos = true;
+                }
+            }
+        }
+        
+        if(negrasVivos || blancasVivos){
+            algunoVivo = true;
+        }
+        return algunoVivo;
+    }
+    
     
 }
