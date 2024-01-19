@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ControlDeExcepciones {
 
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EdadException {
         
         int a = 5;
         
@@ -63,17 +63,12 @@ public class ControlDeExcepciones {
 //            System.out.println("Entrando en el finally");
 //        }
     
-//        int edad = 9;
-//        
-//        if(edad < 18){
-//            throw new EdadException();
-//        }
-//        try{
-//            System.out.println("a");
-//        }
-//        catch(EdadException e){
-//                System.out.println("a");
-//        }
+        int edad = 9;
+        
+        if(edad < 18){
+            throw new EdadException();
+        }
+        
 
 
 
