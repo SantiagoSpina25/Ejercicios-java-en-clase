@@ -33,6 +33,9 @@ public class PracticaDeErrores {
         catch(SaldoNegativoException e){
             System.out.println("Error, saldo negativo");
         }
+        catch(Exception e){
+            System.out.println("Otros errores");
+        }
 
         
         //Si es menor, soltar excepcion "si es menor"
