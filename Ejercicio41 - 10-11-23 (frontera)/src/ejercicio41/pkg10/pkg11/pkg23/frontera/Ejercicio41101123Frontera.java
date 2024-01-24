@@ -7,16 +7,14 @@ public class Ejercicio41101123Frontera {
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-//        Persona persona1 = new Persona("Y9763150D", "Santiago");
-//        Persona persona2 = new Persona("Y5764941E", "Alberto");
-        
+
         Persona [] arrayPersonas =  new Persona[100] ;
         //Cuando el array en cierta posicion esta vacio, tiene dentro NULL
         
-        int i = 0;
+        int contadorPersonas = 0;
         boolean jugar = true;
         do{
-        System.out.println("1 para datos personas, 2 para mostrar todas las personas, 3 buscar por nombre, 4 buscar por dni, 5 salir");
+        System.out.println("1 Para introducir una persona, 2 para mostrar todas las personas, 3 buscar por nombre, 4 buscar por dni, 5 salir");
         int opcion = sc.nextInt();
         
         switch (opcion) {
@@ -24,15 +22,17 @@ public class Ejercicio41101123Frontera {
                 //Crear persona
                  System.out.println("Introduce un nombre");
                  String nombre = sc.next();
+                 
                  System.out.println("Introduce dni");
                  String dni = sc.next();
+                 
                  Persona persona = new Persona(dni, nombre);
-                 arrayPersonas[i] = persona;
-                 i++;
+                 arrayPersonas[contadorPersonas] = persona;
+                 contadorPersonas++;
                 break;
             case 2:
                 //Mostrar todos
-                for (int a = 0; a < 1 + i; a++) {
+                for (int a = 0; a < contadorPersonas; a++) {
                     System.out.println(arrayPersonas[a]);
                 }
                 break;
@@ -40,7 +40,7 @@ public class Ejercicio41101123Frontera {
                 //Buscar por nombre
                 System.out.println("Introduce nombre");
                 String nombreIntroducido = sc.next();
-                for (int a = 0; a < i; a++) {
+                for (int a = 0; a < contadorPersonas; a++) {
                     if(nombreIntroducido.equals(arrayPersonas[a].getNombreCompleto())){
                         System.out.println("La persona con nombre " + nombreIntroducido + " es " + arrayPersonas[a]);
                     }
@@ -50,7 +50,7 @@ public class Ejercicio41101123Frontera {
                 //Buscar por dni
                 System.out.println("Introduce dni");
                 String dniIntroducido = sc.next();
-                for (int a = 0; a < i; a++) {
+                for (int a = 0; a < contadorPersonas; a++) {
                     if(dniIntroducido.equals(arrayPersonas[a].getDni())){
                         System.out.println("La persona con dni " + dniIntroducido + " es " + arrayPersonas[a]);
                     }
