@@ -1,0 +1,10 @@
+Platanos
+1
+Manzanas
+3
+Leche
+5
+Huevos
+7
+Durazno
+9
