@@ -95,9 +95,9 @@ public class PracticaEmail {
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             
             bufferedWriter.write(fraseFamilyFriendlyFinal);
-            bufferedWriter.flush();
+
             
-            
+            bufferedWriter.close();
         }
         catch(IOException e){
             System.out.println(e.getMessage());
