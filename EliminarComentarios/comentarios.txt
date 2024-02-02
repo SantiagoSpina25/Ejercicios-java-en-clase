@@ -1,0 +1,19 @@
+// Creating an ArrayList of Integer type
+ArrayList<Integer> arrli = new ArrayList<Integer>();
+// Appending the new elements at the end of the list using for
+for (int i = 1; i <= 5; i++){
+arrli.add(i);
+}
+// Printing the ArrayList
+System.out.println(arrli);
+// Removing an element at index 3 from the ArrayList using remove() method
+arrli.remove(3);
+// Printing the ArrayList after removing the element
+System.out.println(arrli);
+//creating ArrayList of string type
+ArrayList<String> arrList=new ArrayList<>();
+/*adding few elements
+arrList.add("Cricket");
+arrList.add("Hockey"); */
+arrList.add(0, "BasketBall")
+System.out.println("ArrayList Elements: ");
