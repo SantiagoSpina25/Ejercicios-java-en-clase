@@ -7,10 +7,13 @@ public class PracticaInventario {
 
     
     public static void main(String[] args) {
-        
+        FileReader fR;
+        BufferedReader bR;
+        Item [] articulos = new Item[100];
+        int contArticulos = 0;
         try{
-            FileReader fR = new FileReader("inventario2.txt");
-            BufferedReader bR = new BufferedReader(fR);
+            fR = new FileReader("inventario.txt");
+            bR = new BufferedReader(fR);
             
             String linea = bR.readLine();
             String [] lineaPartida;
@@ -22,15 +25,26 @@ public class PracticaInventario {
                 }else{
                     lineaPartida = linea.split(":");
                     String nombreItem = lineaPartida[0];
-                    String precioItem = lineaPartida[1];
-                    String cantidadItem = lineaPartida[2];
+                    int precioItem = Integer.parseInt(lineaPartida[1]);
+                    int cantidadItem = Integer.parseInt(lineaPartida[2]);
 
                     Item item = new Item(nombreItem, precioItem, cantidadItem);
-                    System.out.println(item);
+//                    System.out.println(item);
+                    articulos[contArticulos] = item;
+                    contArticulos++;
                 }
+
                 linea = bR.readLine();
                 
-                bR.close();
+                
+            }
+            bR.close();
+            
+            for (int i = 0; i < articulos.length; i++) {
+                if(articulos[i] != null){
+                    System.out.println(articulos[i]);
+                }
+                
             }
             
         }
