@@ -1,0 +1,5 @@
+amuleto:200:5
+pocion:50:20
+espada:1000:1
+antorcha:30:9
+cuerda:120:3
