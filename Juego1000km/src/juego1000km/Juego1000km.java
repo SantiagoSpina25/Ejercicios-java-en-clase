@@ -2,6 +2,7 @@
 package juego1000km;
 
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -64,9 +65,50 @@ public class Juego1000km {
             System.out.println("--------------------------------------- Turno: " + turnos + "---------------------------------------");
             
             
+
+
+            System.out.println("Turno jugador 1" );
+
+            System.out.println("Cartas de la mesa");
+            System.out.println(mesa);
+
+            System.out.println("Cartas del jugador 1:                                kilometros: " + j1.getKmTotales());
+
+            System.out.println("Carta robada");
+            j1.getCartasJugador().add(mazo.pollFirst());
+
+            System.out.println(j1.getCartasJugador());
+
+            comprobarSemaforo(mesa.getCartasJugadas1());
+
+
+
+
+            System.out.println("Posicion de la carta que quieres jugar");
+            int posEleccion=0;
+
+            try{
+                posEleccion = sc.nextInt();
+            }catch(InputMismatchException e){
+                System.out.println("Valor incorrecto");
+            }
+
+
+
+
+            //Guardamos la carta que elige el jugador y la removemos de su lista
+            Carta cartaElegida = j1.getCartasJugador().get(posEleccion);
+            j1.getCartasJugador().remove(posEleccion);
+
+
+            //Poner la carta en la mesa
             
-            jugarJugadores(1,j1, mesa, mazo);
-            jugarJugadores(2,j2, mesa, mazo);
+            mesa.getCartasJugadas1().add(cartaElegida);
+            
+
+
+
+            System.out.println("-----------");
             
             
 
@@ -77,37 +119,15 @@ public class Juego1000km {
         
     }
 
-    private static void jugarJugadores(int num, Jugador j, Mesa mesa, LinkedList<Carta> mazo) {
-        Scanner sc = new Scanner(System.in);
-        
-        System.out.println("Turno jugador "+ num);
-        
-        System.out.println("Cartas de la mesa");
-        System.out.println(mesa);
-        
-        System.out.println("Cartas del jugador "+num+":                                kilometros: " + j.getKmTotales());
-         
-        System.out.println("Carta robada");
-        j.getCartasJugador().add(mazo.pollFirst());
-        
-        System.out.println(j.getCartasJugador());
-        
-        System.out.println("Posicion de la carta que quieres jugar");
-        int posEleccion = sc.nextInt();
-        
-         //Guardamos la carta que elige el jugador y la removemos de su lista
-        Carta cartaElegida = j.getCartasJugador().get(posEleccion);
-        j.getCartasJugador().remove(posEleccion);
-        
-        if(num==1){
-            mesa.getCartasJugadas1().add(cartaElegida);
-        }else{
-            mesa.getCartasJugadas2().add(cartaElegida);
+    private static boolean comprobarSemaforo(LinkedList<Carta> cartasJugador) {
+        boolean verde = false;
+        if(cartasJugador.getLast().getTitulo().equalsIgnoreCase("SEMAFORO VERDE")){
+            verde = true;
+        }else if(cartasJugador.isEmpty()){
+            verde = true;
         }
-        
-        
-        System.out.println("-----------");
-            
+        return verde;
     }
+
     
 }

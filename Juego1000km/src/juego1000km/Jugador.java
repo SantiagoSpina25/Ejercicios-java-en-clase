@@ -9,6 +9,7 @@ public class Jugador {
     //Atributos
     private LinkedList<Carta> cartasJugador = new LinkedList<>();
     private int kmTotales;
+    private boolean bloqueado = false;
     
     //Constructor
 
@@ -35,6 +36,14 @@ public class Jugador {
 
     public void avanzar(Carta carta){
         kmTotales += carta.getKilometros();
+    }
+
+    public boolean isBloqueado() {
+        return bloqueado;
+    }
+
+    public void setBloqueado(boolean bloqueado) {
+        this.bloqueado = bloqueado;
     }
     
     @Override

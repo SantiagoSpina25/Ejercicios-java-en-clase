@@ -17,7 +17,7 @@ public class Carta implements Comparable{
         kilometros = num;
     }
     
-    //Constructor de cartas de ataque 
+    //Constructor de cartas de ataque  y defensa
     public Carta(String titulo, boolean ataque){
         this.titulo = titulo;
         this.ataque = ataque;
@@ -38,6 +38,14 @@ public class Carta implements Comparable{
 
     public void setKilometros(int kilometros) {
         this.kilometros = kilometros;
+    }
+
+    public boolean isAtaque() {
+        return ataque;
+    }
+
+    public void setAtaque(boolean ataque) {
+        this.ataque = ataque;
     }
 
 
