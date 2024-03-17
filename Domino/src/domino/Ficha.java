@@ -49,7 +49,7 @@ public class Ficha implements Comparable<Ficha> {
 
     @Override
     public String toString() {
-        return "[ " + izquierda + " | " + derecha + "]";
+        return "[ " + izquierda + " | " + derecha + " ]";
     }
 
     @Override
