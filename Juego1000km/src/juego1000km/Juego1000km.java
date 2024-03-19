@@ -45,12 +45,7 @@ public class Juego1000km {
         
         //Mezclar mazo
         Collections.shuffle(mazo);
-
-        
-//        //Crear mesa
-//        Mesa mesa = new Mesa();
-        
-        
+      
         
         //Repartir cartas
         for (int i = 0; i < 6; i++) {
@@ -161,9 +156,13 @@ public class Juego1000km {
         
         boolean puedeMover = false;
          
-        if(jugador.isSemaforo_verde()){
-            puedeMover = true;
+        if(!jugador.isGasolina()){
+            jugador.setSemaforo_verde(false);
+        }else if(jugador.isSemaforo_verde()){
+            puedeMover=true;
         }
+        
+        
         return puedeMover;
     }
 
@@ -221,3 +220,11 @@ public class Juego1000km {
     }
     
 }
+
+/*
+FALTA:
+    -COMPROBAR QUE PONGA UN NUMERO DE LA LONGITUD DEL ARRAY COMO MAXIMO
+    -QUE SE PONGA LA CARTA REAL EN LA MESA
+    -QUE NO SE PUEDA PONER UNA CARTA DE ATAQUE CUANDO YA HAY UNA
+    -MOSTRAR CARTAS DE DISTANCIA PERO LA DE ESTADO SIEMPRE ULTIMAs
+*/
