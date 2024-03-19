@@ -7,7 +7,7 @@ public class Carta implements Comparable{
     //Atributos
     private String titulo;
     private int kilometros = 0;
-    private boolean ataque;
+//    private boolean ataque;
     
     //Constructores
 
@@ -18,9 +18,9 @@ public class Carta implements Comparable{
     }
     
     //Constructor de cartas de ataque  y defensa
-    public Carta(String titulo, boolean ataque){
+    public Carta(String titulo){
         this.titulo = titulo;
-        this.ataque = ataque;
+//        this.ataque = ataque;
     }
     
     //Metodos
@@ -40,13 +40,13 @@ public class Carta implements Comparable{
         this.kilometros = kilometros;
     }
 
-    public boolean isAtaque() {
-        return ataque;
-    }
-
-    public void setAtaque(boolean ataque) {
-        this.ataque = ataque;
-    }
+//    public boolean isAtaque() {
+//        return ataque;
+//    }
+//
+//    public void setAtaque(boolean ataque) {
+//        this.ataque = ataque;
+//    }
 
 
     @Override

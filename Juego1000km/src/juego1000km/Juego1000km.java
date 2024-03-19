@@ -14,8 +14,8 @@ public class Juego1000km {
         Scanner sc = new Scanner(System.in);
         
         //Crear jugadores
-        Jugador j1 = new Jugador();
-        Jugador j2 = new Jugador();
+        Jugador j1 = new Jugador(true, true,new LinkedList<>());
+        Jugador j2 = new Jugador(true, true,new LinkedList<>());
         
         //Mazo cartas
         LinkedList<Carta> mazo = new LinkedList<>();
@@ -37,18 +37,18 @@ public class Juego1000km {
         
         //Cartas de ataque y defensa
         for (int i = 0; i < 8; i++) {
-            mazo.add(new Carta("SEMAFORO ROJO", true));
-            mazo.add(new Carta("SIN GASOLINA", true));
-            mazo.add(new Carta("SEMAFORO VERDE", false));
-            mazo.add(new Carta("GASOLINA", false));
+            mazo.add(new Carta("SEMAFORO ROJO"));
+            mazo.add(new Carta("SIN GASOLINA"));
+            mazo.add(new Carta("SEMAFORO VERDE"));
+            mazo.add(new Carta("GASOLINA"));
         }
         
         //Mezclar mazo
         Collections.shuffle(mazo);
 
         
-        //Crear mesa
-        Mesa mesa = new Mesa();
+//        //Crear mesa
+//        Mesa mesa = new Mesa();
         
         
         
@@ -57,28 +57,29 @@ public class Juego1000km {
             j1.getCartasJugador().add(mazo.pollFirst());
             j2.getCartasJugador().add(mazo.pollFirst());
         }
-        System.out.println(j1.getCartasJugador());
-        System.out.println(j2.getCartasJugador());
+
         
         int turnos = 0;
         do {            
             System.out.println("--------------------------------------- Turno: " + turnos + "---------------------------------------");
+            
+            // -----------------------------------------JUGADOR 1-----------------------------------------
 
-            System.out.println("Turno jugador 1" );
+            System.out.println("*****TURNO JUGADOR 1***** ESTADO: " + j1.isSemaforo_verde());
 
             System.out.println("Cartas de la mesa");
-            System.out.println(mesa);
+            System.out.println(j1.getCartasMesa());
+            System.out.println(j2.getCartasMesa());
+
 
             System.out.println("Cartas del jugador 1:                                kilometros: " + j1.getKmTotales());
-
+            System.out.println(j1.getCartasJugador());
+            
+            
             //Robar nueva carta
             j1.getCartasJugador().add(mazo.pollFirst());
 
-            System.out.println(j1.getCartasJugador());
-
-//            comprobarSemaforo(mesa.getCartasJugadas1());
-
-
+            
 
 
             System.out.println("Posicion de la carta que quieres jugar");
@@ -96,20 +97,56 @@ public class Juego1000km {
             //Guardamos la carta que elige el jugador y la removemos de su lista
             Carta cartaElegida = j1.getCartasJugador().get(posEleccion);
             j1.getCartasJugador().remove(posEleccion);
-
-            
             
             
             //Comprobar tipo de carta
-            comprobarCarta(cartaElegida, j1, j2, mesa);
+            comprobarCarta(cartaElegida, j1, j2,1);
+
+
+            // -----------------------------------------JUGADOR 2-----------------------------------------
             
-            //Poner la carta en la mesa
-            mesa.getCartasJugadas1().add(cartaElegida);
+            System.out.println("*****TURNO JUGADOR 2***** ESTADO: " + j2.isSemaforo_verde() );
+
+            System.out.println("Cartas de la mesa");
+            System.out.println(j1.getCartasMesa());
+            System.out.println(j2.getCartasMesa());
+
+
+            System.out.println("Cartas del jugador 2:                                kilometros: " + j2.getKmTotales());
+            System.out.println(j2.getCartasJugador());
+            
+            
+            //Robar nueva carta
+            j2.getCartasJugador().add(mazo.pollFirst());
+
+            
+
+
+            System.out.println("Posicion de la carta que quieres jugar");
+            int posEleccion2=0;
+
+            try{
+                posEleccion2 = sc.nextInt();
+            }catch(InputMismatchException e){
+                System.out.println("Valor incorrecto");
+            }
+
+
+
+
+            //Guardamos la carta que elige el jugador y la removemos de su lista
+            Carta cartaElegida2 = j2.getCartasJugador().get(posEleccion2);
+            j2.getCartasJugador().remove(posEleccion2);
+            
+            
+            //Comprobar tipo de carta
+            comprobarCarta(cartaElegida2, j1, j2,2);
+
             
 
 
             System.out.println("-----------");
-            
+            System.out.println("Cartas restantes en el mazo: " + mazo.size());
             
 
             turnos++;
@@ -119,61 +156,68 @@ public class Juego1000km {
         
         
     }
+    
+     private static boolean puedeMover(Jugador jugador) {
+        
+        boolean puedeMover = false;
+         
+        if(jugador.isSemaforo_verde()){
+            puedeMover = true;
+        }
+        return puedeMover;
+    }
 
-//    private static boolean comprobarSemaforo(LinkedList<Carta> cartasJugador) {
-//        boolean verde = false;
-//        if(cartasJugador.getLast().getTitulo().equalsIgnoreCase("SEMAFORO VERDE")){
-//            verde = true;
-//        }else if(cartasJugador.isEmpty()){
-//            verde = true;
-//        }
-//        return verde;
-//    }
 
-    private static void comprobarCarta(Carta cartaElegida, Jugador usuario, Jugador rival, Mesa mesa) {
+
+    private static void comprobarCarta(Carta cartaElegida, Jugador j1, Jugador j2, int numJugador) {
+        
+        Jugador jugador, rival;
+        
+        
+        if(numJugador==1){
+            jugador=j1;
+            rival = j2;
+        }
+        else{
+            jugador=j2;
+            rival = j1;
+        }
+        
         
         //Comprobamos si el jugador puede moverse o tiene que utilizar cartas de defensa
-        boolean sePuedeMover = comprobarMovimiento(usuario);
+        boolean sePuedeMover = puedeMover(jugador);
         
         
         switch (cartaElegida.getTitulo()) {
             case "SEMAFORO ROJO":
                 //Se pone el semaforo rojo al rival
-                rival.setBloqueado(true);
-                mesa.getCartasJugadas2().clear();
-                mesa.getCartasJugadas2().add(cartaElegida);
-                
+                rival.setSemaforo_verde(false);
+                rival.getCartasMesa().clear();
+                rival.getCartasMesa().add(cartaElegida);                
                 break;
             case "SEMAFORO VERDE":
-                
+                jugador.setSemaforo_verde(true);
+                jugador.getCartasMesa().clear();
+                jugador.getCartasMesa().add(cartaElegida);
                 break;
             case "GASOLINA":
-                
+                jugador.setGasolina(true);
+                jugador.getCartasMesa().clear();
+                jugador.getCartasMesa().add(cartaElegida);
                 break;
             case "SIN GASOLINA":
-                
+                rival.setGasolina(false);
+                rival.getCartasMesa().clear();
+                rival.getCartasMesa().add(cartaElegida);    
                 break;
             default://Carta de avance
                 if(sePuedeMover){
-                    usuario.avanzar(cartaElegida);
+                    jugador.avanzar(cartaElegida);
                 }
-           
-                
-        }
-        
-        
-        
-
-    }
-
-    private static boolean comprobarMovimiento(Jugador j1) {
-        if(j1.isBloqueado()){
-            System.out.println("Estas bloqueado, utiliza una carta de defensa o descarta una");
-            return false;
-        }else{
-            return true;
+                else{
+                    System.out.println("El jugador esta bloqueado, carta descartada " + '\n');
+                }
         }
     }
-
     
 }

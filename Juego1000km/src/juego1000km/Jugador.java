@@ -9,13 +9,21 @@ public class Jugador {
     //Atributos
     private LinkedList<Carta> cartasJugador = new LinkedList<>();
     private int kmTotales;
-    private boolean bloqueado = false;
+    private boolean semaforo_verde;
+    private boolean gasolina;
+    //Cartas de la mesa
+    private LinkedList<Carta> cartasMesa = new LinkedList<>();
     
     //Constructor
 
-    public Jugador() {
+    public Jugador(boolean semaforo_verde, boolean gasolina, LinkedList<Carta> cartasMesa) {
+        this.semaforo_verde = semaforo_verde;
+        this.gasolina = gasolina;
+        this.cartasMesa = cartasMesa;
+        cartasMesa.addFirst(new Carta("SEMAFORO VERDE"));
     }
-
+    
+    
     //Metodos
     
     public LinkedList<Carta> getCartasJugador() {
@@ -38,13 +46,31 @@ public class Jugador {
         kmTotales += carta.getKilometros();
     }
 
-    public boolean isBloqueado() {
-        return bloqueado;
+    public boolean isSemaforo_verde() {
+        return semaforo_verde;
     }
 
-    public void setBloqueado(boolean bloqueado) {
-        this.bloqueado = bloqueado;
+    public void setSemaforo_verde(boolean semaforo_verde) {
+        this.semaforo_verde = semaforo_verde;
     }
+
+    public boolean isGasolina() {
+        return gasolina;
+    }
+
+    public void setGasolina(boolean gasolina) {
+        this.gasolina = gasolina;
+    }
+
+    public LinkedList<Carta> getCartasMesa() {
+        return cartasMesa;
+    }
+
+    public void setCartasMesa(LinkedList<Carta> cartasMesa) {
+        this.cartasMesa = cartasMesa;
+    }
+    
+    
     
     @Override
     public String toString() {
