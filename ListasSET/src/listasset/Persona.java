@@ -4,7 +4,7 @@ package listasset;
 import java.util.Objects;
 
 
-public class Persona {
+public class Persona implements Comparable<Persona>{
     private String nombre;
     private int edad;
     private String dni;
@@ -50,6 +50,11 @@ public class Persona {
             return false;
         }
         return Objects.equals(this.dni, other.dni);
+    }
+
+    @Override
+    public int compareTo(Persona o) {
+        return (nombre.compareTo(o.nombre));
     }
 
 
